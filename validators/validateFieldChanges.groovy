@@ -1,3 +1,5 @@
+package validators
+
 import com.atlassian.jira.issue.Issue
 import com.atlassian.jira.issue.MutableIssue
 import com.opensymphony.workflow.InvalidInputException
