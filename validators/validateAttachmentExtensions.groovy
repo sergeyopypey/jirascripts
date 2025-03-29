@@ -1,6 +1,7 @@
+package validators
+
 import com.google.common.io.Files
 import webwork.action.ActionContext
-import com.atlassian.jira.issue.Issue
 import com.atlassian.jira.issue.IssueFieldConstants
 import com.atlassian.jira.component.ComponentAccessor
 import com.opensymphony.workflow.InvalidInputException
@@ -10,8 +11,6 @@ import com.atlassian.jira.issue.attachment.TemporaryWebAttachmentManager
 
 final Set<String> ALLOWED_EXTENSION = ["pdf", "docx"]
 final TemporaryWebAttachmentManager temporaryWebAttachmentManager = ComponentAccessor.getComponent(TemporaryWebAttachmentManager.class)
-
-Issue issue = (Issue) issue
 
 String[] temporaryWebAttachmentStringIds = ActionContext.request.getParameterValues(AttachmentSystemField.FILETOCONVERT)
 
