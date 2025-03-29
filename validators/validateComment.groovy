@@ -1,3 +1,5 @@
+package validators
+
 import webwork.action.ActionContext
 import com.atlassian.jira.issue.Issue
 import org.apache.commons.lang3.StringUtils
