@@ -31,7 +31,7 @@ issueTypeSchemeStats(httpMethod: "GET") { MultivaluedMap queryParams, String bod
 
     for (FieldConfigScheme resultFieldConfigScheme in resultFieldConfigSchemes.sort()) {
         html.append("<tr>")
-        html.append("<td><a href='https://jira.example.com/secure/admin/ConfigureOptionSchemes!default.jspa?fieldId=&schemeId=$resultFieldConfigScheme.id' >${resultFieldConfigScheme.name}</a></td>")
+        html.append("<td><a href='https://jira.local/secure/admin/ConfigureOptionSchemes!default.jspa?fieldId=&schemeId=$resultFieldConfigScheme.id' >${resultFieldConfigScheme.name}</a></td>")
         html.append("<td>${issueTypeSchemeManager.getIssueTypesForScheme(resultFieldConfigScheme).collect {it.name}}</td>")
         html.append("<td>${resultFieldConfigScheme.associatedProjectObjects.collect {it.key} }</td>")
         html.append("</tr>")
@@ -57,7 +57,7 @@ permissionSchemeStats(httpMethod: "GET") { MultivaluedMap queryParams, String bo
 
     for (Scheme resultPermissionScheme in resultPermissionSchemes.sort()) {
         html.append("<tr>")
-        html.append("<td><a href='https://jira.example.com/secure/admin/EditPermissions!default.jspa?schemeId=$resultPermissionScheme.id' >${resultPermissionScheme.name}</a></td>")
+        html.append("<td><a href='https://jira.local/secure/admin/EditPermissions!default.jspa?schemeId=$resultPermissionScheme.id' >${resultPermissionScheme.name}</a></td>")
         html.append("<td>${permissionSchemeManager.getProjects(resultPermissionScheme)*.key}</td>")
         html.append("</tr>")
     }
@@ -82,7 +82,7 @@ issueSecuritySchemeStats(httpMethod: "GET") { MultivaluedMap queryParams, String
     for (Scheme resultIssueSecurityScheme in resultIssueSecuritySchemes.sort()) {
         if (resultIssueSecurityScheme) {
             html.append("<tr>")
-            html.append("<td><a href='https://jira.example.com/secure/admin/EditPermissions!default.jspa?schemeId=$resultIssueSecurityScheme.id' >${resultIssueSecurityScheme.name}</a></td>")
+            html.append("<td><a href='https://jira.local/secure/admin/EditPermissions!default.jspa?schemeId=$resultIssueSecurityScheme.id' >${resultIssueSecurityScheme.name}</a></td>")
             html.append("<td>${issueSecuritySchemeManager.getProjects(resultIssueSecurityScheme)*.key}</td>")
             html.append("</tr>")
         }
@@ -107,7 +107,7 @@ prioritySchemeStats(httpMethod: "GET") { MultivaluedMap queryParams, String body
 
     for (FieldConfigScheme resultPriorityScheme in resultPrioritySchemes.sort()) {
         html.append("<tr>")
-        html.append("<td><a href='https://jira.example.com/secure/admin/ViewPrioritySchemes.jspa' >${resultPriorityScheme.name}</a></td>")
+        html.append("<td><a href='https://jira.local/secure/admin/ViewPrioritySchemes.jspa' >${resultPriorityScheme.name}</a></td>")
         html.append("<td>${prioritySchemeManager.getProjectsWithScheme(resultPriorityScheme)*.key}</td>")
         html.append("</tr>")
     }

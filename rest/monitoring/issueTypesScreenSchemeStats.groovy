@@ -27,7 +27,7 @@ issueTypesScreenSchemeStats(httpMethod: "GET") { MultivaluedMap queryParams, Str
 
     for (IssueTypeScreenScheme resultIssueTypeScreenScheme in resultIssueTypeScreenSchemes.sort()) {
         html.append("<tr>")
-        html.append("<td><a href='https://jira.example.com/secure/admin/ConfigureIssueTypeScreenScheme.jspa?id=$resultIssueTypeScreenScheme.id' >${resultIssueTypeScreenScheme.name}</a></td>")
+        html.append("<td><a href='https://jira.local/secure/admin/ConfigureIssueTypeScreenScheme.jspa?id=$resultIssueTypeScreenScheme.id' >${resultIssueTypeScreenScheme.name}</a></td>")
         html.append("<td>${issueTypeScreenSchemeManager.getIssueTypeScreenSchemeEntities(resultIssueTypeScreenScheme).collect { it.getFieldScreenScheme().getName() }}</td>")
         html.append("<td>${issueTypeScreenSchemeManager.getProjects(resultIssueTypeScreenScheme)*.originalkey}</td>")
         html.append("</tr>")

@@ -69,8 +69,8 @@ issueTypesScreenStats(httpMethod: "GET") { MultivaluedMap queryParams, String bo
 }
 
 void addIssueTypeStatsToTable(List<Project> filteredProjects, String issueTypeId, StringBuilder html) {
-    final String SCREEN_URL   = "https://jira.example.com/secure/admin/ConfigureFieldScreen.jspa?id=%d"
-    final String SCREEN_SCHEME_URL = "https://jira.example.com/secure/admin/ConfigureFieldScreenScheme.jspa?id=%d"
+    final String SCREEN_URL   = "https://jira.local/secure/admin/ConfigureFieldScreen.jspa?id=%d"
+    final String SCREEN_SCHEME_URL = "https://jira.local/secure/admin/ConfigureFieldScreenScheme.jspa?id=%d"
     final IssueTypeManager issueTypeManager = ComponentAccessor.getComponent(IssueTypeManager.class)
     final IssueTypeSchemeManager issueTypeSchemeManager = ComponentAccessor.getComponent(IssueTypeSchemeManager.class)
     final IssueTypeScreenSchemeManager issueTypeScreenSchemeManager = ComponentAccessor.getComponent(IssueTypeScreenSchemeManager.class)

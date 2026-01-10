@@ -28,7 +28,7 @@ workflowSchemeStats(httpMethod: "GET") { MultivaluedMap queryParams, String body
 
     for (resultWorkflowScheme in resultWorkflowSchemes.sort()) {
         html.append("<tr>")
-        html.append("<td><a href='https://jira.example.com/secure/admin/EditWorkflowScheme.jspa?schemeId=$resultWorkflowScheme.id' >${resultWorkflowScheme.name}</a></td>")
+        html.append("<td><a href='https://jira.local/secure/admin/EditWorkflowScheme.jspa?schemeId=$resultWorkflowScheme.id' >${resultWorkflowScheme.name}</a></td>")
         html.append("<td>${resultWorkflowScheme.getMappings().values()}</td>")
         html.append("<td>${workflowSchemeManager.getProjectsUsing(resultWorkflowScheme).collect {it.key} }</td>")
         html.append("</tr>")
