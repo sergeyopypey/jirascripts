@@ -1,11 +1,10 @@
-import com.atlassian.jira.issue.CustomFieldManager
 import com.atlassian.jira.scheme.Scheme
 import com.atlassian.jira.scheme.SchemeEntity
+import com.atlassian.jira.issue.CustomFieldManager
 import com.atlassian.jira.component.ComponentAccessor
-import com.atlassian.jira.permission.PermissionSchemeManager
-import com.atlassian.jira.security.groups.GroupManager
-import com.atlassian.jira.security.plugin.ProjectPermissionKey
 import com.atlassian.jira.security.roles.ProjectRoleManager
+import com.atlassian.jira.permission.PermissionSchemeManager
+import com.atlassian.jira.security.plugin.ProjectPermissionKey
 
 final SCHEME_ID_1 = 10700
 final SCHEME_ID_2 = 10402
