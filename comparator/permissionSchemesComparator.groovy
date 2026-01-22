@@ -1,8 +1,11 @@
+import com.atlassian.jira.issue.CustomFieldManager
 import com.atlassian.jira.scheme.Scheme
 import com.atlassian.jira.scheme.SchemeEntity
 import com.atlassian.jira.component.ComponentAccessor
 import com.atlassian.jira.permission.PermissionSchemeManager
+import com.atlassian.jira.security.groups.GroupManager
 import com.atlassian.jira.security.plugin.ProjectPermissionKey
+import com.atlassian.jira.security.roles.ProjectRoleManager
 
 final SCHEME_ID_1 = 10700
 final SCHEME_ID_2 = 10402
@@ -24,13 +27,13 @@ for (ProjectPermissionKey permission : permissions) {
     Collection<SchemeEntity> entity1 = entities1.findAll { it.entityTypeId == permission }
     Collection<SchemeEntity> entity2 = entities2.findAll { it.entityTypeId == permission }
 
-    Collection<String> values1 = entity1.collect {
-        it.getType() + ":" + it.getParameter()
+    Collection<String> values1 = entity1.sort {it.type }.collect {
+        it.getType() + ": " + getParameterName(it.getType(), it.getParameter())
     }
-    Collection<String> values2 = entity2.collect {
-        it.getType() + ":" + it.getParameter()
+    Collection<String> values2 = entity2.sort {it.type }.collect {
+        it.getType() + ": " + getParameterName(it.getType(), it.getParameter())
     }
-    
+
     html += "<td>"
     html += values1.collect { values2.contains(it) ? "<span style='color:green;'>$it</span>" : "<span style='color:red;'>$it</span>" }.join("<br>")
     html += "</td>"
@@ -41,3 +44,20 @@ for (ProjectPermissionKey permission : permissions) {
 }
 html += "</table>"
 return html
+
+String getParameterName(String type, String parameter) {
+    CustomFieldManager customFieldManager = ComponentAccessor.getComponent(CustomFieldManager)
+    ProjectRoleManager projectRoleManager = ComponentAccessor.getComponent(ProjectRoleManager)
+    if (type == "projectrole") {
+        return projectRoleManager.getProjectRole(Long.parseLong(parameter)).getName()
+    }
+    if (type == "group") {
+        return parameter
+    }
+    if (type == "applicationRole") {
+        return "Any logged in user"
+    }
+    if (type == "userCF") {
+        return customFieldManager.getCustomFieldObject(parameter).getName()
+    }
+}
