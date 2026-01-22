@@ -4,8 +4,8 @@ import com.atlassian.jira.component.ComponentAccessor
 import com.atlassian.jira.permission.PermissionSchemeManager
 import com.atlassian.jira.security.plugin.ProjectPermissionKey
 
-final SCHEME_ID_1 = 11402 // First permission scheme ID
-final SCHEME_ID_2 = 13000 // Second permission scheme ID
+final SCHEME_ID_1 = 10700
+final SCHEME_ID_2 = 10402
 PermissionSchemeManager permissionSchemeManager = ComponentAccessor.getComponent(PermissionSchemeManager)
 
 Scheme permissionScheme1 = permissionSchemeManager.getSchemeObject(SCHEME_ID_1)
@@ -24,20 +24,19 @@ for (ProjectPermissionKey permission : permissions) {
     Collection<SchemeEntity> entity1 = entities1.findAll { it.entityTypeId == permission }
     Collection<SchemeEntity> entity2 = entities2.findAll { it.entityTypeId == permission }
 
-    String value1 = entity1.collect {
+    Collection<String> values1 = entity1.collect {
         it.getType() + ":" + it.getParameter()
-    }.sort().join("<br>")
-    String value2 = entity2.collect {
-        it.getType() + ":" + it.getParameter()
-    }.sort().join("<br>")
-
-    if (value1.equals(value2)) {
-        html += "<td>${value1}</td>"
-        html += "<td>${value2}</td>"
-    } else {
-        html += "<td style='background-color: #ffcccc'>${value1}</td>"
-        html += "<td style='background-color: #ffcccc'>${value2}</td>"
     }
+    Collection<String> values2 = entity2.collect {
+        it.getType() + ":" + it.getParameter()
+    }
+    
+    html += "<td>"
+    html += values1.collect { values2.contains(it) ? "<span style='color:green;'>$it</span>" : "<span style='color:red;'>$it</span>" }.join("<br>")
+    html += "</td>"
+    html += "<td>"
+    html += values2.collect { values1.contains(it) ? "<span style='color:green;'>$it</span>" : "<span style='color:red;'>$it</span>" }.join("<br>")
+    html += "</td>"
     html += "</tr>"
 }
 html += "</table>"
